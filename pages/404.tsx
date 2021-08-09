@@ -5,7 +5,9 @@ const Custom404 = () => {
   const { replace } = useRouter();
 
   useEffect(() => {
-    replace("/");
+    const index =
+      process.env.NODE_ENV === "production" ? "/mappatura2021/" : "/";
+    replace(index);
   }, []);
 
   return <></>;

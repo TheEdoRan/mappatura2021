@@ -13,7 +13,7 @@ export default function Home() {
           name="description"
           content="Scopri le informazioni riguardanti la copertura prevista per il 2026 al tuo indirizzo."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
       </Head>
       <main className="flex flex-1 flex-col p-5 items-center w-full">
         <h1 className="text-2xl sm:text-4xl font-medium mb-1 drop-shadow-lg">
