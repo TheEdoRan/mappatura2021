@@ -41,7 +41,7 @@ const SearchContainer = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row justify-center items-center lg:items-stretch w-full pb-5 lg:pb-0 gap-10 lg:gap-20">
+    <div className="flex flex-col lg:flex-row justify-center items-center lg:items-stretch w-full pb-5 gap-10 lg:gap-20">
       <form
         className="flex flex-col items-center gap-6 w-80 sm:w-[28rem]"
         onSubmit={handleSubmit}
