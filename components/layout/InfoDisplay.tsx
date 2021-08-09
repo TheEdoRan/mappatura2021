@@ -24,9 +24,9 @@ const colorMapping: {
 };
 
 const peakVelMapping: { [key: number]: string } = {
-  30: "30-100 Mbit/s",
-  100: "100-200 Mbit/s",
-  200: "200-300 Mbit/s",
+  30: "30-99 Mbit/s",
+  100: "100-199 Mbit/s",
+  200: "200-299 Mbit/s",
   300: "300-1000 Mbit/s",
   1000: "> 1000 Mbit/s",
 };
