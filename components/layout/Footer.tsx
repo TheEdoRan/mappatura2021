@@ -8,7 +8,7 @@ const Footer = () => {
         <ExternalLink
           href="https://edoardo.ranghieri.com"
           text="TheEdoRan"
-          className="text-white text-base font-semibold hover:no-underline"
+          className="text-white !text-base font-semibold hover:no-underline"
         />{" "}
         con ❤️
       </p>
