@@ -14,6 +14,10 @@ export default function Home() {
           name="description"
           content="Scopri le informazioni riguardanti la copertura prevista per il 2026 al tuo indirizzo."
         />
+        <meta
+          name="google-site-verification"
+          content="J21o39Q5f6SmTWkCZmkgJq6KV6aZ-FC5E6WSOQxgL0U"
+        />
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
       </Head>
       <main className="flex flex-1 flex-col p-5 items-center w-full">
