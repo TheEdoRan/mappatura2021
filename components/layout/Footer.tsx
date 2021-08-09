@@ -8,11 +8,11 @@ const Footer = () => {
         <ExternalLink
           href="https://edoardo.ranghieri.com"
           text="TheEdoRan"
-          className="font-medium"
+          className="text-white text-base font-semibold hover:no-underline"
         />{" "}
         con ❤️
       </p>
-      <div className="flex items-center justify-center gap-4 text-sm font-light text-gray-300">
+      <div className="flex items-center justify-center gap-4">
         <p>
           <ExternalLink
             href="https://github.com/theedoran/mappatura2021"

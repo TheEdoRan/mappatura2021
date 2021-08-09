@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 
 import { EgonData } from "../../interfaces/egon";
+import ExternalLink from "../utils/ExternalLink";
 
 type Props = {
   data: EgonData;
@@ -68,12 +69,18 @@ const InfoDisplay = ({ data }: Props) => {
         <SectionTitle text="Colore del civico">
           <span className="text-white font-medium">{data.number}</span>
         </SectionTitle>
-        <div
-          className={`text-4xl sm:text-5xl py-3 px-4 border-2 ${
-            colorMapping[data.color].className
-          }`}
-        >
-          {colorMapping[data.color].text.toUpperCase()}
+        <div className="text-center">
+          <div
+            className={`text-4xl sm:text-5xl py-3 px-4 border-2 ${
+              colorMapping[data.color].className
+            }`}
+          >
+            {colorMapping[data.color].text.toUpperCase()}
+          </div>
+          <ExternalLink
+            href="https://fibra.click/aree-nere-grigie-bianche/"
+            text="Maggiori informazioni sui colori"
+          />
         </div>
       </SectionContainer>
       {!!data.peakVel && (
