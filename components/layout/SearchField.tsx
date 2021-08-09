@@ -166,7 +166,7 @@ const SearchField = ({ context, disabled, title, className }: Props) => {
             return fetchedData.indexOf(data) < 50;
           }
 
-          return data.label.toLowerCase().includes(query);
+          return data.label.toLowerCase().includes(query.toLowerCase());
         }}
       />
     </div>
