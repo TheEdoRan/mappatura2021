@@ -19,6 +19,7 @@ type Props = {
   disabled?: boolean;
   title: "Regione" | "Provincia" | "Città" | "Via" | "Civico";
   className?: string;
+  menuPlacement: "auto" | "top" | "bottom";
 };
 
 interface SelectOption {
@@ -38,7 +39,13 @@ const makeSelectOptions = (
 const makeNumbersSelectOptions = (data: { number: string; egon: string }[]) =>
   data.map((d) => ({ value: d.number, label: d.number, egon: d.egon }));
 
-const SearchField = ({ context, disabled, title, className }: Props) => {
+const SearchField = ({
+  context,
+  disabled,
+  title,
+  className,
+  menuPlacement,
+}: Props) => {
   const { state, dispatch } = useSearchContext();
   const [fetchedData, setFetchedData] = useState<SelectOption[]>([
     { label: "", value: "", egon: "" },
@@ -143,6 +150,7 @@ const SearchField = ({ context, disabled, title, className }: Props) => {
         cacheOptions
         defaultOptions
         options={fetchedData}
+        menuPlacement={menuPlacement}
         styles={{
           control: (styles, { isDisabled }) => {
             return {

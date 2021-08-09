@@ -41,27 +41,30 @@ const SearchContainer = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row justify-center items-center lg:items-stretch w-full pb-5 lg:pb-0 gap-20">
+    <div className="flex flex-col lg:flex-row justify-center items-center lg:items-stretch w-full pb-5 lg:pb-0 gap-10 lg:gap-20">
       <form
         className="flex flex-col items-center gap-6 w-80 sm:w-[28rem]"
         onSubmit={handleSubmit}
       >
-        <SearchField title="Regione" context="regions" />
+        <SearchField title="Regione" context="regions" menuPlacement="bottom" />
         <SearchField
           title="Provincia"
           context="provinces"
           disabled={!!!state.region}
+          menuPlacement="bottom"
         />
         <SearchField
           title="Città"
           context="cities"
           disabled={!!!state.region || !!!state.province}
+          menuPlacement="top"
         />
         <div className="flex w-full gap-2">
           <SearchField
             title="Via"
             context="streets"
             disabled={!!!state.region || !!!state.province || !!!state.city}
+            menuPlacement="top"
           />
           <SearchField
             title="Civico"
@@ -72,6 +75,7 @@ const SearchContainer = () => {
               !!!state.city ||
               !!!state.street
             }
+            menuPlacement="top"
           />
         </div>
 
