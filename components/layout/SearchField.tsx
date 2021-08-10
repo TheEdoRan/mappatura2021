@@ -192,6 +192,7 @@ const SearchField = ({
                 : isFocused
                 ? "#deebff"
                 : "white",
+              color: "#4760a3",
             };
           },
         }}
