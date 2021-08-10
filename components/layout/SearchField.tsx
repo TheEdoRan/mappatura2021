@@ -33,7 +33,7 @@ const makeSelectOptions = (
 ): { label: string; value: string }[] =>
   data.map((d) => ({
     value: d,
-    label: d === "VALLEDAOSTA" ? "VALLE D'AOSTA" : d,
+    label: d,
   }));
 
 const makeNumbersSelectOptions = (data: { number: string; egon: string }[]) =>

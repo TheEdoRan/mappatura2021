@@ -39,7 +39,7 @@ const memoFetchAPI = memoize(fetchAPI, { promise: true, primitive: true });
 export const fetchRegions = () => memoFetchAPI("/regions");
 
 export const fetchProvinces = (region: string) =>
-  memoFetchAPI(`/${region}/provinces`);
+  memoFetchAPI(`/${encodeURIComponent(region)}/provinces`);
 
 export const fetchCities = (province: string) =>
   memoFetchAPI(`/${encodeURIComponent(province)}/cities`);

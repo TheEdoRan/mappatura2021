@@ -6,6 +6,6 @@ export interface EgonData {
   street: string;
   number: string;
   color: string;
-  peakVel: number;
+  peakSpeed: number;
   below300Mbps: number;
 }

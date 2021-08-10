@@ -24,7 +24,7 @@ const colorMapping: {
   },
 };
 
-const peakVelMapping: { [key: number]: string } = {
+const peakSpeedMapping: { [key: number]: string } = {
   30: "30-99 Mbit/s",
   100: "100-199 Mbit/s",
   200: "200-299 Mbit/s",
@@ -83,11 +83,11 @@ const InfoDisplay = ({ data }: Props) => {
           />
         </div>
       </SectionContainer>
-      {!!data.peakVel && (
+      {!!data.peakSpeed && (
         <SectionContainer>
           <SectionTitle text="Velocità di picco" />
           <pre className="text-3xl sm:text-5xl">
-            {peakVelMapping[data.peakVel]}
+            {peakSpeedMapping[data.peakSpeed]}
           </pre>
         </SectionContainer>
       )}
