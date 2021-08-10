@@ -155,7 +155,7 @@ const SearchField = ({
       label?.toLowerCase().includes(inputValue.toLowerCase()),
     );
 
-    if (context !== "numbers") {
+    if (context !== "numbers" && !!inputValue) {
       data = data
         .sort(
           ({ label: aLabel }, { label: bLabel }) =>

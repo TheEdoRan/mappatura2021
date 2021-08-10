@@ -12,7 +12,7 @@ export default function Home() {
         <title>Esito Mappatura Infratel 2021</title>
         <meta
           name="description"
-          content="Scopri le informazioni riguardanti la copertura prevista per il 2026 al tuo indirizzo."
+          content="Scopri le informazioni riguardanti la copertura prevista entro il 2026 al tuo indirizzo."
         />
         <meta
           name="google-site-verification"
@@ -25,7 +25,7 @@ export default function Home() {
           Mappatura Infratel 2021
         </h1>
         <h2 className="sm:text-lg italic font-light text-blue-300 mb-3 drop-shadow-lg">
-          Copertura prevista per il 2026
+          Copertura prevista entro il 2026 in Italia
         </h2>
         <SearchContextProvider>
           <SearchContainer />
