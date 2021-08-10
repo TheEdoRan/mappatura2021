@@ -151,15 +151,19 @@ const SearchField = ({
       ];
     }
 
-    return fetchedData
-      .filter(({ label }) =>
-        label?.toLowerCase().includes(inputValue.toLowerCase()),
-      )
-      .sort(
-        ({ label: aLabel }, { label: bLabel }) =>
-          aLabel!.length - bLabel!.length || aLabel!.localeCompare(bLabel!),
-      )
-      .slice(0, context === "numbers" ? undefined : 100);
+    let data = fetchedData.filter(({ label }) =>
+      label?.toLowerCase().includes(inputValue.toLowerCase()),
+    );
+
+    if (context !== "numbers") {
+      data = data
+        .sort(
+          ({ label: aLabel }, { label: bLabel }) =>
+            aLabel!.length - bLabel!.length || aLabel!.localeCompare(bLabel!),
+        )
+        .slice(0, 100);
+    }
+    return data;
   }, [fetchedData, showOptionsOnClick, inputValue, context]);
 
   useEffect(() => {
