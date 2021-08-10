@@ -157,7 +157,7 @@ const SearchField = ({
       )
       .sort(
         ({ label: aLabel }, { label: bLabel }) =>
-          aLabel!.length - bLabel!.length,
+          aLabel!.length - bLabel!.length || aLabel!.localeCompare(bLabel!),
       )
       .slice(0, context === "numbers" ? undefined : 100);
   }, [fetchedData, showOptionsOnClick, inputValue, context]);
