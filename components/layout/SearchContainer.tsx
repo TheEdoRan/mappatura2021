@@ -46,18 +46,24 @@ const SearchContainer = () => {
         className="flex flex-col items-center gap-6 w-80 sm:w-[28rem]"
         onSubmit={handleSubmit}
       >
-        <SearchField title="Regione" context="regions" menuPlacement="bottom" />
+        <SearchField
+          title="Regione"
+          context="regions"
+          menuPlacement="bottom"
+          showOptionsOnClick
+        />
         <SearchField
           title="Provincia"
           context="provinces"
           disabled={!!!state.region}
           menuPlacement="bottom"
+          showOptionsOnClick
         />
         <SearchField
           title="Città"
           context="cities"
           disabled={!!!state.region || !!!state.province}
-          menuPlacement="top"
+          menuPlacement="bottom"
         />
         <div className="flex w-full gap-2">
           <SearchField
@@ -76,6 +82,7 @@ const SearchContainer = () => {
               !!!state.street
             }
             menuPlacement="top"
+            showOptionsOnClick
           />
         </div>
 

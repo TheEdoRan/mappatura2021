@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
 import { useSearchContext } from "../../context/SearchContext";
@@ -20,12 +20,14 @@ type Props = {
   title: "Regione" | "Provincia" | "Città" | "Via" | "Civico";
   className?: string;
   menuPlacement: "auto" | "top" | "bottom";
+  showOptionsOnClick?: boolean;
 };
 
 interface SelectOption {
   label?: string;
   value?: string;
   egon?: string;
+  isDisabled?: boolean;
 }
 
 const makeSelectOptions = (
@@ -45,11 +47,11 @@ const SearchField = ({
   title,
   className,
   menuPlacement,
+  showOptionsOnClick = false,
 }: Props) => {
   const { state, dispatch } = useSearchContext();
-  const [fetchedData, setFetchedData] = useState<SelectOption[]>([
-    { label: "", value: "", egon: "" },
-  ]);
+  const [fetchedData, setFetchedData] = useState<SelectOption[]>([]);
+  const [inputValue, setInputValue] = useState<string>("");
 
   const contextFn = ({
     get,
@@ -138,6 +140,28 @@ const SearchField = ({
     contextFn({ get: false, payload, egon });
   };
 
+  const filterFetchedData = useCallback((): SelectOption[] => {
+    if (!showOptionsOnClick && !!!inputValue) {
+      return [
+        {
+          label: "Digita un nome",
+          value: "__search_placeholder",
+          isDisabled: true,
+        },
+      ];
+    }
+
+    return fetchedData
+      .filter(({ label }) =>
+        label?.toLowerCase().includes(inputValue.toLowerCase()),
+      )
+      .sort(
+        ({ label: aLabel }, { label: bLabel }) =>
+          aLabel!.length - bLabel!.length,
+      )
+      .slice(0, context === "numbers" ? undefined : 100);
+  }, [fetchedData, showOptionsOnClick, inputValue, context]);
+
   useEffect(() => {
     fetchOptionsByContext();
   }, [state]);
@@ -149,7 +173,8 @@ const SearchField = ({
         isDisabled={disabled}
         cacheOptions
         defaultOptions
-        options={fetchedData}
+        options={filterFetchedData()}
+        onInputChange={(value) => setInputValue(value)}
         menuPlacement={menuPlacement}
         styles={{
           control: (styles, { isDisabled }) => {
@@ -157,6 +182,16 @@ const SearchField = ({
               ...styles,
               backgroundColor: isDisabled ? "#b0b0b0" : "#f7f7f7",
               fontStyle: isDisabled ? "italic" : "normal",
+            };
+          },
+          option: (styles, { isDisabled, isFocused }) => {
+            return {
+              ...styles,
+              backgroundColor: isDisabled
+                ? "transparent"
+                : isFocused
+                ? "#deebff"
+                : "white",
             };
           },
         }}
@@ -168,14 +203,9 @@ const SearchField = ({
           !inputValue ? "" : "Nessun risultato"
         }
         className={`w-full text-blue-900 ${className}`}
-        placeholder="Seleziona"
-        filterOption={({ data }, query) => {
-          if (!query) {
-            return fetchedData.indexOf(data) < 50;
-          }
-
-          return data.label.toLowerCase().includes(query.toLowerCase());
-        }}
+        placeholder={`${
+          showOptionsOnClick ? "Seleziona" : "Cerca"
+        } ${title.toLowerCase()}`}
       />
     </div>
   );
