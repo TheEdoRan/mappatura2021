@@ -1,5 +1,10 @@
 {
   "name": "mappatura2021",
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theedoran/mappatura2021.git"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
