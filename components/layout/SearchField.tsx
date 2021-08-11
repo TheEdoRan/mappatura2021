@@ -199,6 +199,12 @@ const SearchField = ({
               color: "#4760a3",
             };
           },
+          placeholder: (styles) => {
+            return {
+              ...styles,
+              lineHeight: "1rem",
+            };
+          },
         }}
         value={getValueByContext()}
         onChange={({ value, egon }: any) => {
