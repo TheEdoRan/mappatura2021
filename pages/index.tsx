@@ -9,10 +9,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Esito Mappatura Infratel 2021</title>
+        <title>Esito Mappatura Infratel 2021 | Ricerca il tuo numero civico</title>
         <meta
           name="description"
-          content="Scopri le informazioni riguardanti la copertura prevista entro il 2026 al tuo indirizzo."
+          content="Scopri le informazioni riguardanti la copertura in fibra ottica prevista entro il 2026 al tuo indirizzo."
         />
         <meta
           name="google-site-verification"
