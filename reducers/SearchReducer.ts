@@ -41,23 +41,20 @@ export const reducer = (
     case ActionTypes.RESET:
       return resetState();
     case ActionTypes.SET_REGION:
-      return { ...resetState(), region: action.payload };
+      return { region: action.payload };
     case ActionTypes.SET_PROVINCE:
       return {
-        ...resetState(),
         region: state.region,
         province: action.payload,
       };
     case ActionTypes.SET_CITY:
       return {
-        ...resetState(),
         region: state.region,
         province: state.province,
         city: action.payload,
       };
     case ActionTypes.SET_STREET:
       return {
-        ...resetState(),
         region: state.region,
         province: state.province,
         city: state.city,
@@ -65,7 +62,6 @@ export const reducer = (
       };
     case ActionTypes.SET_NUMBER_EGON:
       return {
-        ...resetState(),
         region: state.region,
         province: state.province,
         city: state.city,
