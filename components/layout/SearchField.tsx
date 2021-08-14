@@ -53,52 +53,55 @@ const SearchField = ({
   const [fetchedData, setFetchedData] = useState<SelectOption[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
 
-  const contextFn = ({
-    get,
-    fetch,
-    payload,
-    egon,
-  }: {
-    get?: boolean;
-    fetch?: boolean;
-    payload?: string;
-    egon?: string;
-  }) => {
-    switch (context) {
-      case "regions":
-        return get
-          ? state.region
-          : fetch
-          ? fetchRegions()
-          : dispatch({ type: ActionTypes.SET_REGION, payload });
-      case "provinces":
-        return get
-          ? state.province
-          : fetch
-          ? fetchProvinces(state.region!)
-          : dispatch({ type: ActionTypes.SET_PROVINCE, payload });
-      case "cities":
-        return get
-          ? state.city
-          : fetch
-          ? fetchCities(state.province!)
-          : dispatch({ type: ActionTypes.SET_CITY, payload });
-      case "streets":
-        return get
-          ? state.street
-          : fetch
-          ? fetchStreets(state.province!, state.city!)
-          : dispatch({ type: ActionTypes.SET_STREET, payload });
-      case "numbers":
-        return get
-          ? state.number
-          : fetch
-          ? fetchNumbers(state.province!, state.city!, state.street!)
-          : dispatch({ type: ActionTypes.SET_NUMBER_EGON, payload, egon });
-      default:
-        return;
-    }
-  };
+  const contextFn = useCallback(
+    ({
+      get,
+      fetch,
+      payload,
+      egon,
+    }: {
+      get?: boolean;
+      fetch?: boolean;
+      payload?: string;
+      egon?: string;
+    }) => {
+      switch (context) {
+        case "regions":
+          return get
+            ? state.region
+            : fetch
+            ? fetchRegions()
+            : dispatch({ type: ActionTypes.SET_REGION, payload });
+        case "provinces":
+          return get
+            ? state.province
+            : fetch
+            ? fetchProvinces(state.region!)
+            : dispatch({ type: ActionTypes.SET_PROVINCE, payload });
+        case "cities":
+          return get
+            ? state.city
+            : fetch
+            ? fetchCities(state.province!)
+            : dispatch({ type: ActionTypes.SET_CITY, payload });
+        case "streets":
+          return get
+            ? state.street
+            : fetch
+            ? fetchStreets(state.province!, state.city!)
+            : dispatch({ type: ActionTypes.SET_STREET, payload });
+        case "numbers":
+          return get
+            ? state.number
+            : fetch
+            ? fetchNumbers(state.province!, state.city!, state.street!)
+            : dispatch({ type: ActionTypes.SET_NUMBER_EGON, payload, egon });
+        default:
+          return;
+      }
+    },
+    [context, dispatch, state],
+  );
 
   const getValueByContext = () => {
     const data = contextFn({ get: true });
@@ -110,7 +113,7 @@ const SearchField = ({
     return { label: data, value: data };
   };
 
-  const fetchOptionsByContext = async () => {
+  const fetchOptionsByContext = useCallback(async () => {
     if (disabled) {
       return;
     }
@@ -128,7 +131,7 @@ const SearchField = ({
       console.error(e);
       APIErrorToast(e);
     }
-  };
+  }, [context, contextFn, disabled]);
 
   const setStateByContext = ({
     payload,
@@ -168,7 +171,7 @@ const SearchField = ({
 
   useEffect(() => {
     fetchOptionsByContext();
-  }, [state]);
+  }, [state, fetchOptionsByContext]);
 
   return (
     <div className="w-full">

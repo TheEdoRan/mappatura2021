@@ -8,7 +8,7 @@ const Custom404 = () => {
     const index =
       process.env.NODE_ENV === "production" ? "/mappatura2021/" : "/";
     replace(index);
-  }, []);
+  }, [replace]);
 
   return <></>;
 };
