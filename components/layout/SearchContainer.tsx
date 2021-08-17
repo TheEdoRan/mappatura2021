@@ -64,6 +64,7 @@ const SearchContainer = () => {
           context="cities"
           disabled={!!!state.region || !!!state.province}
           menuPlacement="bottom"
+          showOptionsOnClick
         />
         <div className="flex w-full gap-2">
           <SearchField
