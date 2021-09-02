@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 const API_URL = "https://mappatura2021.duckdns.org/api";
 
-class HTTPError extends Error {
+export class HTTPError extends Error {
   status = 0;
   constructor(message: string, status: number) {
     super();
@@ -46,14 +46,14 @@ export const fetchCities = (province: string) =>
 
 export const fetchStreets = (province: string, city: string) =>
   memoFetchAPI(
-    `/${encodeURIComponent(province)}/${encodeURIComponent(city)}/streets`,
+    `/${encodeURIComponent(province)}/${encodeURIComponent(city)}/streets`
   );
 
 export const fetchNumbers = (province: string, city: string, street: string) =>
   memoFetchAPI(
     `/${encodeURIComponent(province)}/${encodeURIComponent(
-      city,
-    )}/${encodeURIComponent(street)}/numbers`,
+      city
+    )}/${encodeURIComponent(street)}/numbers`
   );
 
 export const fetchEgonData = (egon: string) => memoFetchAPI(`/egon?id=${egon}`);

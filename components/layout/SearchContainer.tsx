@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useSearchContext } from "../../context/SearchContext";
 import { ActionTypes } from "../../reducers/SearchReducer";
-import { APIErrorToast, fetchEgonData } from "../../api";
+import { APIErrorToast, fetchEgonData, HTTPError } from "../../api";
 import { EgonData } from "../../interfaces/egon";
 
 import SearchField from "./SearchField";
@@ -35,7 +35,7 @@ const SearchContainer = () => {
       .then((data) => setEgonData(data))
       .catch((e) => {
         console.error(e);
-        APIErrorToast(e);
+        APIErrorToast(e as HTTPError);
       })
       .finally(() => setInfoLoading(false));
   };

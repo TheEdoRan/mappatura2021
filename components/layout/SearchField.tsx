@@ -12,6 +12,7 @@ import {
   fetchStreets,
   fetchNumbers,
   APIErrorToast,
+  HTTPError,
 } from "../../api";
 
 type Props = {
@@ -31,7 +32,7 @@ interface SelectOption {
 }
 
 const makeSelectOptions = (
-  data: string[],
+  data: string[]
 ): { label: string; value: string }[] =>
   data.map((d) => ({
     value: d,
@@ -100,7 +101,7 @@ const SearchField = ({
           return;
       }
     },
-    [context, dispatch, state],
+    [context, dispatch, state]
   );
 
   const getValueByContext = () => {
@@ -129,7 +130,7 @@ const SearchField = ({
       setFetchedData(makeSelectOptions(data));
     } catch (e) {
       console.error(e);
-      APIErrorToast(e);
+      APIErrorToast(e as HTTPError);
     }
   }, [context, contextFn, disabled]);
 
@@ -155,14 +156,14 @@ const SearchField = ({
     }
 
     let data = fetchedData.filter(({ label }) =>
-      label?.toLowerCase().includes(inputValue.toLowerCase()),
+      label?.toLowerCase().includes(inputValue.toLowerCase())
     );
 
     if (context !== "numbers" && !!inputValue) {
       data = data
         .sort(
           ({ label: aLabel }, { label: bLabel }) =>
-            aLabel!.length - bLabel!.length || aLabel!.localeCompare(bLabel!),
+            aLabel!.length - bLabel!.length || aLabel!.localeCompare(bLabel!)
         )
         .slice(0, 100);
     }
