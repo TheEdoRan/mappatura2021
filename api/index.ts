@@ -1,7 +1,7 @@
 import memoize from "memoizee";
 import toast from "react-hot-toast";
 
-const API_URL = "https://mappatura2021.duckdns.org/api";
+const API_URL = "https://mappatura2021.ranghieri.com";
 
 export class HTTPError extends Error {
   status = 0;
