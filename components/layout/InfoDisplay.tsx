@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-
 import { EgonData } from "../../interfaces/egon";
 import ExternalLink from "../utils/ExternalLink";
 
@@ -46,7 +45,7 @@ const SectionTitle = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <h2 className="text-2xl sm:text-3xl text-indigo-100 uppercase">
+    <h2 className="text-xl sm:text-2xl text-indigo-100 uppercase">
       {text} {children}
     </h2>
   );
@@ -64,14 +63,14 @@ const InfoDisplay = ({ data }: Props) => {
   }, []);
 
   return (
-    <div ref={divRef} className="flex flex-col items-center gap-10">
+    <div ref={divRef} className="flex flex-col items-center gap-8">
       <SectionContainer>
         <SectionTitle text="Colore del civico">
           <span className="text-white font-medium">{data.number}</span>
         </SectionTitle>
         <div className="text-center">
           <div
-            className={`text-4xl sm:text-5xl py-3 px-4 border-2 ${
+            className={`text-3xl sm:text-4xl py-2 px-4 border-2 ${
               colorMapping[data.color].className
             }`}
           >
@@ -83,17 +82,25 @@ const InfoDisplay = ({ data }: Props) => {
           />
         </div>
       </SectionContainer>
+      <SectionContainer>
+        <SectionTitle text="Previsto per l'anno" />
+        {data.bulYear ? (
+          <pre className="text-2xl sm:text-4xl">{data.bulYear}</pre>
+        ) : (
+          <pre className="text-2xl">Dato non disponibile</pre>
+        )}
+      </SectionContainer>
       {!!data.peakSpeed && (
         <SectionContainer>
           <SectionTitle text="Velocità di picco" />
-          <pre className="text-3xl sm:text-5xl">
+          <pre className="text-2xl sm:text-4xl">
             {peakSpeedMapping[data.peakSpeed]}
           </pre>
         </SectionContainer>
       )}
       <SectionContainer>
         <SectionTitle text="Velocità massima" />
-        <pre className="text-3xl sm:text-5xl">
+        <pre className="text-2xl sm:text-4xl">
           {below300MbpsMapping[data.below300Mbps]}
         </pre>
       </SectionContainer>
