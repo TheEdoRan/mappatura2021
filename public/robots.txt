@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://theedoran.github.io/mappatura2021/sitemap.xml
